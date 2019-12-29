@@ -1,0 +1,110 @@
+// begin testcase: class::randomize#26286 [type=riscv_C_SUB_instr] @ 0ns: /home/danghai/hhoangda/riscv-dv/src/riscv_instr_stream.sv(233)
+module top;
+
+class TFoo;
+	typedef enum bit [4:0] {
+		ZERO = 5'h00,
+		RA = 5'h01,
+		SP = 5'h02,
+		GP = 5'h03,
+		TP = 5'h04,
+		T0 = 5'h05,
+		T1 = 5'h06,
+		T2 = 5'h07,
+		S0 = 5'h08,
+		S1 = 5'h09,
+		A0 = 5'h0a,
+		A1 = 5'h0b,
+		A2 = 5'h0c,
+		A3 = 5'h0d,
+		A4 = 5'h0e,
+		A5 = 5'h0f,
+		A6 = 5'h10,
+		A7 = 5'h11,
+		S2 = 5'h12,
+		S3 = 5'h13,
+		S4 = 5'h14,
+		S5 = 5'h15,
+		S6 = 5'h16,
+		S7 = 5'h17,
+		S8 = 5'h18,
+		S9 = 5'h19,
+		S10 = 5'h1a,
+		S11 = 5'h1b,
+		T3 = 5'h1c,
+		T4 = 5'h1d,
+		T5 = 5'h1e,
+		T6 = 5'h1f
+	} _typedef_1;
+
+	typedef enum bit [5:0] {
+		J_FORMAT = 6'h00,
+		U_FORMAT = 6'h01,
+		I_FORMAT = 6'h02,
+		B_FORMAT = 6'h03,
+		R_FORMAT = 6'h04,
+		S_FORMAT = 6'h05,
+		R4_FORMAT = 6'h06,
+		CI_FORMAT = 6'h07,
+		CB_FORMAT = 6'h08,
+		CJ_FORMAT = 6'h09,
+		CR_FORMAT = 6'h0a,
+		CA_FORMAT = 6'h0b,
+		CL_FORMAT = 6'h0c,
+		CS_FORMAT = 6'h0d,
+		CSS_FORMAT = 6'h0e,
+		CIW_FORMAT = 6'h0f
+	} _typedef_2;
+
+	_typedef_1 \local::this.avail_regs [$] = { A4,S4,ZERO,T6,T2,RA };
+	bit [0:0] has_rd = 1'h1;
+	_typedef_1 \local::this.reserved_rd [$] = { SP };
+	_typedef_1 \local::this.cfg.reserved_regs [$] = { A2,S6,S1 };
+	_typedef_2 format = CA_FORMAT;
+	rand _typedef_1 rd;
+
+	constraint hard_constraints {
+		// /home/danghai/hhoangda/riscv-dv/src/isa/riscv_compressed_instr.sv(15): rvc_csr_c
+		if ((format inside { CA_FORMAT, CB_FORMAT, CS_FORMAT, CL_FORMAT, CIW_FORMAT })) {
+			if (has_rd) {
+				(rd inside { [S0:A5] });
+			}
+		}
+
+		// /home/danghai/hhoangda/riscv-dv/src/riscv_instr_stream.sv(233)
+		if ((3 > 0)) {
+			if (has_rd) {
+				(!(rd inside { \local::this.cfg.reserved_regs  }));
+			}
+		}
+
+		// /home/danghai/hhoangda/riscv-dv/src/riscv_instr_stream.sv(233)
+		if ((1 > 0)) {
+			if (has_rd) {
+				(!(rd inside { \local::this.reserved_rd  }));
+			}
+		}
+
+		// /home/danghai/hhoangda/riscv-dv/src/riscv_instr_stream.sv(233)
+		if ((6 > 0)) {
+			if (has_rd) {
+				(rd inside { \local::this.avail_regs  });
+			}
+		}
+	}
+endclass
+
+TFoo f = new;
+int status;
+
+initial begin
+	for(int i = 0; i < 1000; i++) begin
+		$display("i=%0d: %s", i, f.get_randstate());
+		status = f.randomize();
+		$display(status);
+		assert(status) else $fatal;
+	end
+end
+
+endmodule
+// end testcase: class::randomize#26286 [type=riscv_C_SUB_instr] @ 0ns: /home/danghai/hhoangda/riscv-dv/src/riscv_instr_stream.sv(233)
