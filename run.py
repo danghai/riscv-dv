@@ -16,6 +16,7 @@ limitations under the License.
 Regression script for RISC-V random instruction generator
 """
 
+
 import argparse
 import os
 import subprocess

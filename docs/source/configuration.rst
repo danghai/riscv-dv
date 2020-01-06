@@ -78,7 +78,7 @@ conditions for the load/store testing.
 Setup regression test list
 --------------------------
 
-Test list in `YAML format`_
+Test list in `YAML format`
 
 .. code-block:: yaml
 
@@ -108,7 +108,6 @@ Test list in `YAML format`_
       gen_test: riscv_instr_base_test
       rtl_test: core_base_test
 
-.. _YAML format: https://github.com/google/riscv-dv/blob/master/yaml/testlist.yaml
 
 .. note:: To automatically generate CSR tests without having to explicitly run the
     script, include `riscv_csr_test` in the testlist as shown in the example YAML

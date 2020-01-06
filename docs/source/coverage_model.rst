@@ -32,7 +32,7 @@ It includes below major categories:
 The functional covergroup is still under active development. Please feel free to
 add anything you are interested or file a bug for any feature request.
 
-Before start, please check the you have modified `riscv_core_setting.sv`_ to reflect your processor capabilities. The covergroup is selectively instantiated based on this setting so that you don't need to deal with excluding unrelated coverpoints later. You also need to get the Spike ISS or riscvOVPsim ISS (riscv-ovpsim) setup before running this flow::
+Before start, please check the you have modified `riscv_core_setting.sv` to reflect your processor capabilities. The covergroup is selectively instantiated based on this setting so that you don't need to deal with excluding unrelated coverpoints later. You also need to get the Spike ISS or riscvOVPsim ISS (riscv-ovpsim) setup before running this flow::
 
     # Process spike simulation log and collect functional coverage
     cov --dir out/spike_sim
@@ -50,5 +50,4 @@ in parallel::
     # Split the run to process 5 CSV at a time, and run with LSF
     cov --dir out/spike_sim --lsf_cmd "bsub ....." -bz 5
 
-.. _riscv_core_setting.sv: https://github.com/google/riscv-dv/blob/master/setting/riscv_core_setting.sv
 

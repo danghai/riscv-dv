@@ -1,4 +1,7 @@
 language: python
+dist: xenial
+sudo: false
+cache: pip3
 matrix:
     include:
         - python: 3.5
@@ -9,9 +12,10 @@ matrix:
           env: TOX_ENV=py37
 install:
     # Install riscv-dv using pip to ensure dependencies are downloaded correctly.
-    - pip install -r requirements.txt
-    - pip install .
-    - pip install tox
+    - pip3 install -r requirements.txt
+    - pip3 install .
+    - pip3 install tox
 script:
-    - tox -e $TOX_ENV
-    - pip uninstall -y skt
+    # Use Sphinx to make the html docs
+    - sphinx-build -E -W -b linkcheck docs/source build
+    - pip3 uninstall -y riscv-dv

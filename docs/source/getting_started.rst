@@ -64,7 +64,7 @@ Currently three ISS are supported, the default ISS is spike. You can install any
 one of below to run ISS simulation.
 
 1.  - `spike`_ setup
-    - Follow the `spike steps`_ to build spike
+    - Follow the `spike steps` to build spike
     - Build spike with "--enable-commitlog"
     - Set environment variable SPIKE_PATH to the directory of the spike binary
 2.  - `riscv-ovpsim`_ setup
@@ -77,7 +77,6 @@ one of below to run ISS simulation.
     - Set environment variable SAIL_RISCV to the path of sail-riscv binary
 
 .. _spike: https://github.com/riscv/riscv-isa-sim#
-.. _spike steps: https://github.com/riscv/riscv-isa-sim#build-steps
 .. _riscv-ovpsim: https://github.com/riscv/riscv-ovpsim
 .. _whisper: https://github.com/westerndigitalcorporation/swerv-ISS
 .. _sail-riscv: https://github.com/rems-project/sail-riscv
@@ -111,7 +110,7 @@ You can specify the simulator by "-simulator" option::
     run --test riscv_arithmetic_basic_test --simulator dsim
     run --test riscv_arithmetic_basic_test --simulator qrun
 
-The complete test list can be found in `base testlist yaml`_. To run a full regression, simply use below command::
+The complete test list can be found in `base testlist yaml`. To run a full regression, simply use below command::
 
     run
 
@@ -144,7 +143,6 @@ Here's a few more examples of the run command::
 
     ....
 
-.. _base testlist yaml: https://github.com/google/riscv-dv/blob/master/yaml/base_testlist.yaml
 
 Run ISS simulation
 ------------------
